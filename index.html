@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beach vs Shopping Duel</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="stage">
+  <div id="gameFrame">
+    <canvas id="game" width="960" height="540"></canvas>
+
+    <div id="hud">
+      <div class="healthBlock">
+        <div class="healthLabel">You</div>
+        <div class="healthBarOuter"><div id="playerHealth" class="healthBarInner"></div></div>
+        <div id="playerWins" class="winTally">Wins: 0</div>
+      </div>
+      <div class="healthBlock right">
+        <div class="healthLabel">Monika</div>
+        <div class="healthBarOuter"><div id="computerHealth" class="healthBarInner"></div></div>
+        <div id="computerWins" class="winTally">Wins: 0</div>
+      </div>
+    </div>
+
+    <div id="monikaSpeech"></div>
+
+    <div id="powerBarOuter" class="hidden">
+      <div id="powerBarInner"></div>
+    </div>
+
+    <div id="menuScreen" class="overlay">
+      <div class="card">
+        <h1>Beach vs Shopping Duel</h1>
+        <p>Defend your right to avoid shopping! Knock Monika off her platform and get everyone to the beach.</p>
+        <p>Aim with your mouse. Hold the mouse button to charge power, release to throw a coin.</p>
+        <p>A headshot wins instantly. Body and leg hits wear her down instead.</p>
+        <button id="playBtn">Play</button>
+      </div>
+    </div>
+
+    <div id="gameOverScreen" class="overlay hidden">
+      <div class="card">
+        <h1 id="resultTitle">You Win!</h1>
+        <button id="againBtn">Play Again</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/entities.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
