@@ -837,6 +837,13 @@ class Spear {
     osc.stop(t0 + 0.95);
   }
 
+  // Quiz-fail sound — a low descending buzz, distinct from playCoin (reused
+  // for a correct answer) and from playMoan (Monika's separate loss reaction).
+  // Quiz-fail sound — Monika's own moan, played once.
+  function playQuizFail() {
+    playMoan();
+  }
+
   const MIN_SPEED = 780;
   const MAX_SPEED = 1450;
   const CHARGE_TIME = 1.1; // seconds to reach full power
@@ -1173,12 +1180,12 @@ class Spear {
     playerWinsEl.textContent = "Wins: " + playerWins;
 
     algebraTitleEl.textContent = pointEarned
-      ? "Shopping's over, we're going to the beach! (+1 point)"
-      : "You won the duel, but missed the math - no point this round!";
+      ? "Shopping's over, we're going to the beach!"
+      : "You won the duel, but missed the math!";
     algebraTitleEl.classList.remove("result-pink", "result-blue");
     algebraTitleEl.classList.add("result-blue");
 
-    playMoan();
+    if (pointEarned) playMoan(); // fail case already gets its moan from playQuizFail
     const pickupDelay = 500;
     const driveDuration = 1300;
     carAnim = { startTime: performance.now() + pickupDelay, duration: driveDuration, x0: computer.x, y: computer.standY };
@@ -1359,6 +1366,9 @@ class Spear {
       : "Not quite — " +
         algebraProblem.vars.map((v) => `${v.icon}=${v.answer}`).join(", ") +
         ". No point this round.";
+
+    if (allCorrect) playCoin();
+    else playQuizFail();
 
     algebraOnResolved(allCorrect);
   }
